@@ -19,14 +19,7 @@ builder.Services.AddAuthentication(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.SameSite = SameSiteMode.Strict;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Events.OnRedirectToLogin = ctx =>
-    {
-        ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        return Task.CompletedTask;
-    };
 });
-
-builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

@@ -19,16 +19,3 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
-
-@code {
-    protected override async Task OnInitializedAsync()
-    {
-        await Http.GetAsync("/api/auth/login");
-
-        // The first time the app loads, the `/api/auth/me` endpoint will return 401,
-        // but after the login endpoint is hit, it will return the user info.
-        // So we need to notify the authentication state provider to re-query the user info.
-        var provider = (CookieAuthenticationStateProvider)AuthStateProvider;
-        provider.NotifyAuthenticationStateChanged();
-    }
-}

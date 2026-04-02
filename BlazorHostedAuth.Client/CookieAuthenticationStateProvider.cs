@@ -35,11 +35,6 @@ public class CookieAuthenticationStateProvider : AuthenticationStateProvider
         }
     }
 
-    public void NotifyAuthenticationStateChanged()
-    {
-        NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
-    }
-
     private static AuthenticationState Anonymous() =>
         new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
 }
