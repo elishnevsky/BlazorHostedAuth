@@ -39,6 +39,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapRazorPages();
-app.MapFallbackToPage("/_Host");
+
+app.MapFallbackToFile("index.html").RequireAuthorization();
 
 app.Run();
