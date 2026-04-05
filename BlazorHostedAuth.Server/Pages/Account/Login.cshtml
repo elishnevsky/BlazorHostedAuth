@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model BlazorHostedAuth.Server.Pages.Account.LoginModel
 
 <!DOCTYPE html>
@@ -8,9 +9,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="~/css/bootstrap/bootstrap.min.css" />
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+    <link rel="stylesheet" href="~/css/login.css" />
 </head>
 
 <body>
+    <h1>Login</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <section>
+                <form id="account" method="post">
+                    @Html.AntiForgeryToken()
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" placeholder="username" />
+                        <label asp-for="Input.Username" class="form-label">Username</label>
+                        <span asp-validation-for="Input.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password" class="form-label">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="checkbox mb-3">
+                        <label asp-for="Input.RememberMe" class="form-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
 </body>
 
 </html>
